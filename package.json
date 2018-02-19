@@ -42,7 +42,12 @@
         "color": "#e2e2e2"
     },
     "activationEvents": [
-        "workspaceContains:**/package.json"
+        "workspaceContains:**/package.json",
+        "onCommand:npmDepUpdater.updateAll",
+        "onCommand:npmDepUpdater.updateDepOnly",
+        "onCommand:npmDepUpdater.updateDevDepOnly",
+        "onCommand:npmDepUpdater.updatePeerDepOnly",
+        "onCommand:npmDepUpdater.updateOptDepOnly"
     ],
     "contributes": {
         "commands": [

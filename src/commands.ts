@@ -1,25 +1,41 @@
+import path from 'path';
 import vscode from 'vscode';
 import { constants } from './constants';
+import { DependenciesFlags } from './enumerations';
 
-export const registerCommands = (context: vscode.ExtensionContext): void => {
-  registerCommand(context, 'updateAll', updateAllCommand);
-  registerCommand(context, 'updateDepOnly', updateDependenciesOnlyCommand);
-  registerCommand(context, 'updateDevDepOnly', updateDevDependenciesOnlyCommand);
-  registerCommand(context, 'updatePeerDepOnly', updatePeerDependenciesOnlyCommand);
-  registerCommand(context, 'updateOptDepOnly', updateOptionalDependenciesOnlyCommand);
-};
+function handleCommandError(): boolean {
+  if (vscode.window &&
+    vscode.window.activeTextEditor &&
+    vscode.window.activeTextEditor.document &&
+    path.basename(vscode.window.activeTextEditor.document.fileName) === 'package.json') {
+    return false;
+  }
+  vscode.window.showWarningMessage('Please use with a "package.json" file.');
+  return true;
+}
 
-const registerCommand = (context: vscode.ExtensionContext, name: string, callback: (...args: any[]) => any): void => {
+function updateCommand(flag?: DependenciesFlags): void {
+  try {
+    // tslint:disable-next-line:no-console
+    console.log(flag);
+    if (handleCommandError()) { return; }
+  } catch (error) {
+    console.error(error.stack || error.message || error);
+  }
+}
+
+function registerCommand(
+  context: vscode.ExtensionContext,
+  name: string,
+  callback: (...args: any[]) => any): void {
   const command = vscode.commands.registerCommand(`${constants.extensionName}.${name}`, callback);
   context.subscriptions.push(command);
+}
+
+export const registerCommands = (context: vscode.ExtensionContext): void => {
+  registerCommand(context, 'updateAll', () => updateCommand(DependenciesFlags.All));
+  registerCommand(context, 'updateDepOnly', () => updateCommand(DependenciesFlags.Prod));
+  registerCommand(context, 'updateDevDepOnly', () => updateCommand(DependenciesFlags.Dev));
+  registerCommand(context, 'updatePeerDepOnly', () => updateCommand(DependenciesFlags.Peer));
+  registerCommand(context, 'updateOptDepOnly', () => updateCommand(DependenciesFlags.Optional));
 };
-
-const updateAllCommand = (): void => void 0;
-
-const updateDependenciesOnlyCommand = (): void => void 0;
-
-const updateDevDependenciesOnlyCommand = (): void => void 0;
-
-const updatePeerDependenciesOnlyCommand = (): void => void 0;
-
-const updateOptionalDependenciesOnlyCommand = (): void => void 0;
