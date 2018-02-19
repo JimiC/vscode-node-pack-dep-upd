@@ -1,0 +1,10 @@
+{
+  "command.updateAll.title": "Update All Dependencies",
+  "command.updateDepOnly.title": "Update Production Dependencies Only",
+  "command.updateDevDepOnly.title": "Update Development Dependencies Only",
+  "command.updatePeerDepOnly.title": "Update Peer Dependencies Only",
+  "command.updateOptDepOnly.title": "Update Optional Dependencies Only",
+  "configuration.title": "NPM Dependencies Updater",
+  "configuration.npmDepUpdater.registry.description": "The URL of the NPM registry to use.",
+  "configuration.npmDepUpdater.resolver.description": "Sets how the dependency version gets resolved."
+}

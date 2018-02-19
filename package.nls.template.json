@@ -1,0 +1,10 @@
+{
+  "command.updateAll.title": "",
+  "command.updateDepOnly.title": "",
+  "command.updateDevDepOnly.title": "",
+  "command.updatePeerDepOnly.title": "",
+  "command.updateOptDepOnly.title": "",
+  "configuration.title": "",
+  "configuration.npmDepUpdater.registry.description": "",
+  "configuration.npmDepUpdater.resolver.description": ""
+}

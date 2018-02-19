@@ -1,0 +1,153 @@
+{
+    "name": "vscode-npm-dep-updater",
+    "version": "0.0.0",
+    "displayName": "NPM Dependencies Updater",
+    "description": "Update your Node.js project dependencies (SemVer compliant)",
+    "publisher": "jimic",
+    "license": "MIT",
+    "author": {
+        "name": "Jimi (Dimitris) Charalampidis",
+        "email": "jimikar@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JimiC/vscode-npm-dep-updater"
+    },
+    "bugs": {
+        "url": "https://github.com/JimiC/vscode-npm-dep-updater/issues",
+        "email": "jimikar@gmail.com"
+    },
+    "engines": {
+        "vscode": "^1.8.1",
+        "node": ">=6.5.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "dependency",
+        "dependencies",
+        "npm",
+        "packages",
+        "package.json",
+        "semver",
+        "update",
+        "updater",
+        "vscode-npm-dep-updater"
+    ],
+    "preview": true,
+    "homepage": "https://github.com/JimiC/vscode-npm-dep-updater/blob/master/README.md",
+    "icon": "images/logo.png",
+    "galleryBanner": {
+        "color": "#e2e2e2"
+    },
+    "activationEvents": [
+        "workspaceContains:**/package.json"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "npmDepUpdater.updateAll",
+                "title": "%command.updateAll.title%",
+                "category": "NPM Dependencies Updater"
+            },
+            {
+                "command": "npmDepUpdater.updateDepOnly",
+                "title": "%command.updateDepOnly.title%",
+                "category": "NPM Dependencies Updater"
+            },
+            {
+                "command": "npmDepUpdater.updateDevDepOnly",
+                "title": "%command.updateDevDepOnly.title%",
+                "category": "NPM Dependencies Updater"
+            },
+            {
+                "command": "npmDepUpdater.updatePeerDepOnly",
+                "title": "%command.updatePeerDepOnly.title%",
+                "category": "NPM Dependencies Updater"
+            },
+            {
+                "command": "npmDepUpdater.updateOptDepOnly",
+                "title": "%command.updateOptDepOnly.title%",
+                "category": "NPM Dependencies Updater"
+            }
+        ],
+        "configuration": {
+            "title": "%configuration.title%",
+            "properties": {
+                "npmDepUpdater.registry": {
+                    "type": "string",
+                    "default": "https://registry.npmjs.org",
+                    "description": "%configuration.npmDepUpdater.registry.description%"
+                },
+                "npmDepUpdater.resolver": {
+                    "type": "string",
+                    "default": "semver",
+                    "description": "%configuration.npmDepUpdater.resolver.description%",
+                    "enum": [
+                        "semver",
+                        "latest"
+                    ]
+                }
+            }
+        },
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceFilename == package.json",
+                    "command": "npmDepUpdater.updateAll",
+                    "group": "npmDepUpdater"
+                },
+                {
+                    "when": "resourceFilename == package.json",
+                    "command": "npmDepUpdater.updateDepOnly",
+                    "group": "npmDepUpdater@2"
+                },
+                {
+                    "when": "resourceFilename == package.json",
+                    "command": "npmDepUpdater.updateDevDepOnly",
+                    "group": "npmDepUpdater@3"
+                },
+                {
+                    "when": "resourceFilename == package.json",
+                    "command": "npmDepUpdater.updatePeerDepOnly",
+                    "group": "npmDepUpdater@4"
+                },
+                {
+                    "when": "resourceFilename == package.json",
+                    "command": "npmDepUpdater.updateOptDepOnly",
+                    "group": "npmDepUpdater@5"
+                }
+            ]
+        }
+    },
+    "main": "./out/src",
+    "scripts": {
+        "build": "npm run lint && npm run test",
+        "compile": "tsc",
+        "compile:w": "npm run compile -- -w",
+        "lint": "tslint -p .",
+        "postinstall": "vscode-install",
+        "precompile": "rimraf ./out",
+        "pretest": "rimraf ./.nyc_output ./coverage && npm run compile",
+        "test": "nyc -c -x '' mocha ./out/test --recursive",
+        "vscode:prepublish": "npm run build"
+    },
+    "dependencies": {
+        "semver": "^5.5.0"
+    },
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "codecov": "^3.0.0",
+        "mocha": "^5.0.1",
+        "nyc": "^11.4.1",
+        "rimraf": "^2.6.2",
+        "tslint": "^5.9.1",
+        "typescript": "^2.7.2",
+        "vscode": "^1.1.10",
+        "@types/chai": "^4.1.2",
+        "@types/mocha": "^2.2.48",
+        "@types/node": "~7.0.54",
+        "@types/semver": "^5.5.0"
+    }
+}

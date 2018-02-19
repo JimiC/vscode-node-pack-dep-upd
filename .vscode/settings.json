@@ -1,0 +1,12 @@
+{
+  "tslint.enable": true,
+  "editor.tabSize": 2,
+  "files.exclude": {
+      "out": false
+  },
+  "search.exclude": {
+      "out": true,
+      "images": true,
+  },
+  "typescript.tsdk": "./node_modules/typescript/lib"
+}
