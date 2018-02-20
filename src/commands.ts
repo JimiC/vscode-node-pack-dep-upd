@@ -2,12 +2,13 @@ import path from 'path';
 import vscode from 'vscode';
 import { constants } from './constants';
 import { DependenciesFlags } from './enumerations';
+import * as utils from './utils/helper';
 
 function handleCommandError(): boolean {
-  if (vscode.window &&
-    vscode.window.activeTextEditor &&
-    vscode.window.activeTextEditor.document &&
-    path.basename(vscode.window.activeTextEditor.document.fileName) === 'package.json') {
+  if (utils.isNullOrUndefind(vscode, 'window', 'activeTextEditor', 'document', 'fileName')) {
+    return true;
+  }
+  if (path.basename(vscode.window.activeTextEditor.document.fileName) === 'package.json') {
     return false;
   }
   vscode.window.showWarningMessage('Please use with a "package.json" file.');
