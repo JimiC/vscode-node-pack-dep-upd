@@ -53,28 +53,23 @@
         "commands": [
             {
                 "command": "npmDepUpdater.updateAll",
-                "title": "%command.updateAll.title%",
-                "category": "NPM Dependencies Updater"
+                "title": "%command.updateAll.title%"
             },
             {
                 "command": "npmDepUpdater.updateDepOnly",
-                "title": "%command.updateDepOnly.title%",
-                "category": "NPM Dependencies Updater"
+                "title": "%command.updateDepOnly.title%"
             },
             {
                 "command": "npmDepUpdater.updateDevDepOnly",
-                "title": "%command.updateDevDepOnly.title%",
-                "category": "NPM Dependencies Updater"
+                "title": "%command.updateDevDepOnly.title%"
             },
             {
                 "command": "npmDepUpdater.updatePeerDepOnly",
-                "title": "%command.updatePeerDepOnly.title%",
-                "category": "NPM Dependencies Updater"
+                "title": "%command.updatePeerDepOnly.title%"
             },
             {
                 "command": "npmDepUpdater.updateOptDepOnly",
-                "title": "%command.updateOptDepOnly.title%",
-                "category": "NPM Dependencies Updater"
+                "title": "%command.updateOptDepOnly.title%"
             }
         ],
         "configuration": {
