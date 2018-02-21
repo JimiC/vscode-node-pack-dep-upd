@@ -5,6 +5,6 @@
   "command.updatePeerDepOnly.title": "",
   "command.updateOptDepOnly.title": "",
   "configuration.title": "",
-  "configuration.npmDepUpdater.registry.description": "",
-  "configuration.npmDepUpdater.resolver.description": ""
+  "configuration.npm-dep-upd.registry.description": "",
+  "configuration.npm-dep-upd.resolver.description": ""
 }

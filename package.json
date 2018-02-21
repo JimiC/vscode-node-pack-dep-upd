@@ -43,47 +43,47 @@
     },
     "activationEvents": [
         "workspaceContains:**/package.json",
-        "onCommand:npmDepUpdater.updateAll",
-        "onCommand:npmDepUpdater.updateDepOnly",
-        "onCommand:npmDepUpdater.updateDevDepOnly",
-        "onCommand:npmDepUpdater.updatePeerDepOnly",
-        "onCommand:npmDepUpdater.updateOptDepOnly"
+        "onCommand:npm-dep-upd.updateAll",
+        "onCommand:npm-dep-upd.updateDepOnly",
+        "onCommand:npm-dep-upd.updateDevDepOnly",
+        "onCommand:npm-dep-upd.updatePeerDepOnly",
+        "onCommand:npm-dep-upd.updateOptDepOnly"
     ],
     "contributes": {
         "commands": [
             {
-                "command": "npmDepUpdater.updateAll",
+                "command": "npm-dep-upd.updateAll",
                 "title": "%command.updateAll.title%"
             },
             {
-                "command": "npmDepUpdater.updateDepOnly",
+                "command": "npm-dep-upd.updateDepOnly",
                 "title": "%command.updateDepOnly.title%"
             },
             {
-                "command": "npmDepUpdater.updateDevDepOnly",
+                "command": "npm-dep-upd.updateDevDepOnly",
                 "title": "%command.updateDevDepOnly.title%"
             },
             {
-                "command": "npmDepUpdater.updatePeerDepOnly",
+                "command": "npm-dep-upd.updatePeerDepOnly",
                 "title": "%command.updatePeerDepOnly.title%"
             },
             {
-                "command": "npmDepUpdater.updateOptDepOnly",
+                "command": "npm-dep-upd.updateOptDepOnly",
                 "title": "%command.updateOptDepOnly.title%"
             }
         ],
         "configuration": {
             "title": "%configuration.title%",
             "properties": {
-                "npmDepUpdater.registry": {
+                "npm-dep-upd.registry": {
                     "type": "string",
                     "default": "https://registry.npmjs.org",
-                    "description": "%configuration.npmDepUpdater.registry.description%"
+                    "description": "%configuration.npm-dep-upd.registry.description%"
                 },
-                "npmDepUpdater.resolver": {
+                "npm-dep-upd.resolver": {
                     "type": "string",
                     "default": "semver",
-                    "description": "%configuration.npmDepUpdater.resolver.description%",
+                    "description": "%configuration.npm-dep-upd.resolver.description%",
                     "enum": [
                         "semver",
                         "latest"
@@ -95,27 +95,27 @@
             "editor/context": [
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmDepUpdater.updateAll",
+                    "command": "npm-dep-upd.updateAll",
                     "group": "npmDepUpdater"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmDepUpdater.updateDepOnly",
+                    "command": "npm-dep-upd.updateDepOnly",
                     "group": "npmDepUpdater@2"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmDepUpdater.updateDevDepOnly",
+                    "command": "npm-dep-upd.updateDevDepOnly",
                     "group": "npmDepUpdater@3"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmDepUpdater.updatePeerDepOnly",
+                    "command": "npm-dep-upd.updatePeerDepOnly",
                     "group": "npmDepUpdater@4"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmDepUpdater.updateOptDepOnly",
+                    "command": "npm-dep-upd.updateOptDepOnly",
                     "group": "npmDepUpdater@5"
                 }
             ]
