@@ -43,56 +43,56 @@
     },
     "activationEvents": [
         "workspaceContains:**/package.json",
-        "onCommand:npm-dep-upd.updateAll",
-        "onCommand:npm-dep-upd.updateDepOnly",
-        "onCommand:npm-dep-upd.updateDevDepOnly",
-        "onCommand:npm-dep-upd.updatePeerDepOnly",
-        "onCommand:npm-dep-upd.updateOptDepOnly"
+        "onCommand:npmdepupd.updateAll",
+        "onCommand:npmdepupd.updateDepOnly",
+        "onCommand:npmdepupd.updateDevDepOnly",
+        "onCommand:npmdepupd.updatePeerDepOnly",
+        "onCommand:npmdepupd.updateOptDepOnly"
     ],
     "contributes": {
         "commands": [
             {
-                "command": "npm-dep-upd.updateAll",
+                "command": "npmdepupd.updateAll",
                 "title": "%command.updateAll.title%"
             },
             {
-                "command": "npm-dep-upd.updateDepOnly",
+                "command": "npmdepupd.updateDepOnly",
                 "title": "%command.updateDepOnly.title%"
             },
             {
-                "command": "npm-dep-upd.updateDevDepOnly",
+                "command": "npmdepupd.updateDevDepOnly",
                 "title": "%command.updateDevDepOnly.title%"
             },
             {
-                "command": "npm-dep-upd.updatePeerDepOnly",
+                "command": "npmdepupd.updatePeerDepOnly",
                 "title": "%command.updatePeerDepOnly.title%"
             },
             {
-                "command": "npm-dep-upd.updateOptDepOnly",
+                "command": "npmdepupd.updateOptDepOnly",
                 "title": "%command.updateOptDepOnly.title%"
             }
         ],
         "configuration": {
             "title": "%configuration.title%",
             "properties": {
-                "npm-dep-upd.registry": {
+                "npmdepupd.registry": {
                     "type": "string",
                     "default": "https://registry.npmjs.org",
-                    "description": "%configuration.npm-dep-upd.registry.description%"
+                    "description": "%configuration.npmdepupd.registry.description%"
                 },
-                "npm-dep-upd.resolver": {
+                "npmdepupd.resolver": {
                     "type": "string",
                     "default": "semver",
-                    "description": "%configuration.npm-dep-upd.resolver.description%",
+                    "description": "%configuration.npmdepupd.resolver.description%",
                     "enum": [
                         "semver",
                         "latest"
                     ]
                 },
-                "npm-dep-upd.keepRange": {
+                "npmdepupd.keepRange": {
                     "type": "boolean",
                     "default": "true",
-                    "description": "%configuration.npm-dep-upd.keepRange.description%"
+                    "description": "%configuration.npmdepupd.keepRange.description%"
                 }
             }
         },
@@ -100,28 +100,28 @@
             "editor/context": [
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npm-dep-upd.updateAll",
-                    "group": "npmDepUpdater"
+                    "command": "npmdepupd.updateAll",
+                    "group": "npmdepupd"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npm-dep-upd.updateDepOnly",
-                    "group": "npmDepUpdater@2"
+                    "command": "npmdepupd.updateDepOnly",
+                    "group": "npmdepupd@2"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npm-dep-upd.updateDevDepOnly",
-                    "group": "npmDepUpdater@3"
+                    "command": "npmdepupd.updateDevDepOnly",
+                    "group": "npmdepupd@3"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npm-dep-upd.updatePeerDepOnly",
-                    "group": "npmDepUpdater@4"
+                    "command": "npmdepupd.updatePeerDepOnly",
+                    "group": "npmdepupd@4"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npm-dep-upd.updateOptDepOnly",
-                    "group": "npmDepUpdater@5"
+                    "command": "npmdepupd.updateOptDepOnly",
+                    "group": "npmdepupd@5"
                 }
             ]
         }

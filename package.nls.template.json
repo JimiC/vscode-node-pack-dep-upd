@@ -5,7 +5,7 @@
   "command.updatePeerDepOnly.title": "",
   "command.updateOptDepOnly.title": "",
   "configuration.title": "",
-  "configuration.npm-dep-upd.registry.description": "",
-  "configuration.npm-dep-upd.resolver.description": "",
-  "configuration.npm-dep-upd.keepRange.description": ""
+  "configuration.npmdepupd.registry.description": "",
+  "configuration.npmdepupd.resolver.description": "",
+  "configuration.npmdepupd.keepRange.description": ""
 }
