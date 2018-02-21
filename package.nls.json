@@ -6,5 +6,6 @@
   "command.updateOptDepOnly.title": "NDU: Update Optional Only",
   "configuration.title": "NPM Dependencies Updater",
   "configuration.npm-dep-upd.registry.description": "The URL of the NPM registry to use.",
-  "configuration.npm-dep-upd.resolver.description": "Sets how the dependency version gets resolved."
+  "configuration.npm-dep-upd.resolver.description": "Sets how the dependency version gets resolved.",
+  "configuration.npm-dep-upd.keepRange.description": "Controls whether the range comparators should be kept."
 }

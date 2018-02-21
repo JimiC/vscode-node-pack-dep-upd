@@ -6,5 +6,6 @@
   "command.updateOptDepOnly.title": "",
   "configuration.title": "",
   "configuration.npm-dep-upd.registry.description": "",
-  "configuration.npm-dep-upd.resolver.description": ""
+  "configuration.npm-dep-upd.resolver.description": "",
+  "configuration.npm-dep-upd.keepRange.description": ""
 }

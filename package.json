@@ -88,6 +88,11 @@
                         "semver",
                         "latest"
                     ]
+                },
+                "npm-dep-upd.keepRange": {
+                    "type": "boolean",
+                    "default": "true",
+                    "description": "%configuration.npm-dep-upd.keepRange.description%"
                 }
             }
         },
