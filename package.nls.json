@@ -7,5 +7,5 @@
   "configuration.title": "NPM Dependencies Updater",
   "configuration.npmdepupd.registry.description": "The URL of the NPM registry to use.",
   "configuration.npmdepupd.resolver.description": "Sets how the dependency version gets resolved.",
-  "configuration.npmdepupd.keepRange.description": "Controls whether the range comparators should be kept."
+  "configuration.npmdepupd.keepRange.description": "Controls whether the range comparators are kept."
 }
