@@ -4,6 +4,7 @@ import { constants } from './constants';
 import { DependenciesFlags } from './enumerations';
 import { PackageFileManager } from './packageFileManager';
 import * as utils from './utils/helper';
+import { VersionResolver } from './versionResolver';
 
 export class CommandManager {
 
@@ -23,11 +24,15 @@ export class CommandManager {
     context.subscriptions.push(command);
   }
 
-  private static _updateCommand(flag?: DependenciesFlags): void {
+  private static async _updateCommand(flag?: DependenciesFlags): Promise<void> {
     try {
-      // tslint:disable-next-line:no-console
-      console.log(flag);
       if (this._handleCommandError()) { return; }
+      const packageFileManager = new PackageFileManager(vscode.window.activeTextEditor.document);
+      const dependencies = packageFileManager.getDependencies(flag);
+      const config = vscode.workspace.getConfiguration(constants.extensionShortName);
+      const versionResolver = new VersionResolver(config);
+      const resolvedDependencies = await versionResolver.resolve(dependencies);
+      packageFileManager.persist(resolvedDependencies);
     } catch (error) {
       console.error(error.stack || error.message || error);
     }
