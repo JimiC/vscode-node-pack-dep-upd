@@ -1,5 +1,6 @@
 import vscode from 'vscode';
 import { DependenciesFlags } from './enumerations';
+import { IDependencies, IPackageDependencies } from './models';
 
 export class PackageFileManager {
 
@@ -11,45 +12,60 @@ export class PackageFileManager {
       : {};
   }
 
-  public getDependencies(flag: DependenciesFlags): any {
+  public get allDependencies(): IPackageDependencies {
+    return {
+      dependencies: this.dependencies,
+      devDependencies: this.devDependencies,
+      optionalDependencies: this.optionalDependencies,
+      peerDependencies: this.peerDependencies,
+    };
+  }
+
+  public get dependencies(): IDependencies {
+    return this._packageJsonFile.dependencies;
+  }
+
+  public get devDependencies(): IDependencies {
+    return this._packageJsonFile.devDependencies;
+  }
+
+  public get peerDependencies(): IDependencies {
+    return this._packageJsonFile.peerDependencies;
+  }
+
+  public get optionalDependencies(): IDependencies {
+    return this._packageJsonFile.optionalDependencies;
+  }
+
+  public getDependencies(flag: DependenciesFlags): IPackageDependencies {
     switch (flag) {
       case DependenciesFlags.All:
-        return this.allDependencies();
+        return this.allDependencies;
       case DependenciesFlags.Prod:
-        return this.dependencies();
+        return { dependencies: this.dependencies };
       case DependenciesFlags.Dev:
-        return this.devDependencies();
+        return { devDependencies: this.devDependencies };
       case DependenciesFlags.Peer:
-        return this.peerDependencies();
+        return { peerDependencies: this.peerDependencies };
       case DependenciesFlags.Optional:
-        return this.optionalDependencies();
+        return { optionalDependencies: this.optionalDependencies };
       default:
         throw new Error('Not Implemented');
     }
   }
 
-  public get allDependencies(): any {
-    return {
-      ...this.dependencies(),
-      ...this.devDependencies(),
-      ...this.peerDependencies(),
-      ...this.optionalDependencies(),
-    };
-  }
-
-  public get dependencies(): any {
-    return this._packageJsonFile.dependencies;
-  }
-
-  public get devDependencies(): any {
-    return this._packageJsonFile.devDependencies;
-  }
-
-  public get peerDependencies(): any {
-    return this._packageJsonFile.peerDependencies;
-  }
-
-  public get optionalDependencies(): any {
-    return this._packageJsonFile.optionalDependencies;
+  public persist(resolvedDependecies: IPackageDependencies): void {
+    if (resolvedDependecies.dependencies) {
+      this._packageJsonFile.dependencies = resolvedDependecies.dependencies;
+    }
+    if (resolvedDependecies.devDependencies) {
+      this._packageJsonFile.devDependencies = resolvedDependecies.devDependencies;
+    }
+    if (resolvedDependecies.peerDependencies) {
+      this._packageJsonFile.peerDependencies = resolvedDependecies.peerDependencies;
+    }
+    if (resolvedDependecies.optionalDependencies) {
+      this._packageJsonFile.optionalDependencies = resolvedDependecies.optionalDependencies;
+    }
   }
 }
