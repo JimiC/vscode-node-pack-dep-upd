@@ -1,8 +1,8 @@
-import { IDependency } from './dependency';
+import { IDependencies } from './dependencies';
 
 export interface IPackageDependencies {
-  dependencies?: IDependency;
-  devDependencies?: IDependency;
-  peerDependencies?: IDependency;
-  optionalDependencies?: IDependency;
+  dependencies?: IDependencies;
+  devDependencies?: IDependencies;
+  peerDependencies?: IDependencies;
+  optionalDependencies?: IDependencies;
 }
