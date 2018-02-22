@@ -1,4 +1,5 @@
 import vscode from 'vscode';
+import { DependenciesFlags } from './enumerations';
 
 export class PackageFileManager {
 
@@ -8,6 +9,23 @@ export class PackageFileManager {
     this._packageJsonFile = this._textDoc
       ? JSON.parse(this._textDoc.getText())
       : {};
+  }
+
+  public getDependencies(flag: DependenciesFlags): any {
+    switch (flag) {
+      case DependenciesFlags.All:
+        return this.allDependencies();
+      case DependenciesFlags.Prod:
+        return this.dependencies();
+      case DependenciesFlags.Dev:
+        return this.devDependencies();
+      case DependenciesFlags.Peer:
+        return this.peerDependencies();
+      case DependenciesFlags.Optional:
+        return this.optionalDependencies();
+      default:
+        throw new Error('Not Implemented');
+    }
   }
 
   public get allDependencies(): any {
