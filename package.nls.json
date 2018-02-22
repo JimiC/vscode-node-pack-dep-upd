@@ -1,9 +1,9 @@
 {
   "command.updateAll.title": "NDU: Update All",
-  "command.updateDepOnly.title": "NDU: Update Production Only",
-  "command.updateDevDepOnly.title": "NDU: Update Development Only",
-  "command.updatePeerDepOnly.title": "NDU: Update Peer Only",
-  "command.updateOptDepOnly.title": "NDU: Update Optional Only",
+  "command.updateDepOnly.title": "NDU: Update Dependencies Only",
+  "command.updateDevDepOnly.title": "NDU: Update DevDependencies Only",
+  "command.updatePeerDepOnly.title": "NDU: Update PeerDependencies Only",
+  "command.updateOptDepOnly.title": "NDU: Update OptionalDependencies Only",
   "configuration.title": "NPM Dependencies Updater",
   "configuration.npmdepupd.registry.description": "The URL of the NPM registry to use.",
   "configuration.npmdepupd.policy.description": "The policy on how the dependency version gets resolved.",
