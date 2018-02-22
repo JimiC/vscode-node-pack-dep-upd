@@ -18,7 +18,7 @@ export class CommandManager {
     context: vscode.ExtensionContext,
     name: string,
     callback: (...args: any[]) => any): void {
-    const command = vscode.commands.registerCommand(`${constants.extensionName}.${name}`, callback);
+    const command = vscode.commands.registerCommand(`${constants.extensionShortName}.${name}`, callback);
     context.subscriptions.push(command);
   }
 
