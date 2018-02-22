@@ -27,14 +27,18 @@ export class CommandManager {
   private static async _updateCommand(flag?: DependenciesFlags): Promise<void> {
     try {
       if (this._handleCommandError()) { return; }
+      const status = vscode.window.setStatusBarMessage('Updating dependencies...');
       const packageFileManager = new PackageFileManager(vscode.window.activeTextEditor.document);
       const dependencies = packageFileManager.getDependencies(flag);
       const config = vscode.workspace.getConfiguration(constants.extensionShortName);
       const versionResolver = new VersionResolver(config);
       const resolvedDependencies = await versionResolver.resolve(dependencies);
-      packageFileManager.persist(resolvedDependencies);
+      await packageFileManager.persist(resolvedDependencies);
+      status.dispose();
+      vscode.window.setStatusBarMessage('Dependencies updated', 3000);
     } catch (error) {
       console.error(error.stack || error.message || error);
+      vscode.window.setStatusBarMessage('NDU failed to update the dependencies', 5000);
     }
   }
 
