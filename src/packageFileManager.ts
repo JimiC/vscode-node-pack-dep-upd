@@ -54,11 +54,10 @@ export class PackageFileManager {
     }
   }
 
-  public persist(resolvedDependecies: IPackageDependencies): void {
+  public persist(resolvedDependecies: IPackageDependencies): Thenable<boolean> {
     if (!Object.keys(resolvedDependecies).length) {
       return;
     }
-
     if (resolvedDependecies.dependencies) {
       this._packageFileContent.dependencies = resolvedDependecies.dependencies;
     }
@@ -71,7 +70,8 @@ export class PackageFileManager {
     if (resolvedDependecies.optionalDependencies) {
       this._packageFileContent.optionalDependencies = resolvedDependecies.optionalDependencies;
     }
-
-    this._textDoc.save();
+    if (this._textDoc.isDirty) {
+      return this._textDoc.save();
+    }
   }
 }
