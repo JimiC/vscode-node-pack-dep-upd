@@ -4,10 +4,10 @@ import { IDependencies, IPackageDependencies } from './models';
 
 export class PackageFileManager {
 
-  private _packageJsonFile: any;
+  private _packageFileContent: any;
 
   constructor(private _textDoc: vscode.TextDocument) {
-    this._packageJsonFile = this._textDoc
+    this._packageFileContent = this._textDoc
       ? JSON.parse(this._textDoc.getText())
       : {};
   }
@@ -22,19 +22,19 @@ export class PackageFileManager {
   }
 
   public get dependencies(): IDependencies {
-    return this._packageJsonFile.dependencies;
+    return this._packageFileContent.dependencies;
   }
 
   public get devDependencies(): IDependencies {
-    return this._packageJsonFile.devDependencies;
+    return this._packageFileContent.devDependencies;
   }
 
   public get peerDependencies(): IDependencies {
-    return this._packageJsonFile.peerDependencies;
+    return this._packageFileContent.peerDependencies;
   }
 
   public get optionalDependencies(): IDependencies {
-    return this._packageJsonFile.optionalDependencies;
+    return this._packageFileContent.optionalDependencies;
   }
 
   public getDependencies(flag: DependenciesFlags): IPackageDependencies {
@@ -55,17 +55,23 @@ export class PackageFileManager {
   }
 
   public persist(resolvedDependecies: IPackageDependencies): void {
+    if (!Object.keys(resolvedDependecies).length) {
+      return;
+    }
+
     if (resolvedDependecies.dependencies) {
-      this._packageJsonFile.dependencies = resolvedDependecies.dependencies;
+      this._packageFileContent.dependencies = resolvedDependecies.dependencies;
     }
     if (resolvedDependecies.devDependencies) {
-      this._packageJsonFile.devDependencies = resolvedDependecies.devDependencies;
+      this._packageFileContent.devDependencies = resolvedDependecies.devDependencies;
     }
     if (resolvedDependecies.peerDependencies) {
-      this._packageJsonFile.peerDependencies = resolvedDependecies.peerDependencies;
+      this._packageFileContent.peerDependencies = resolvedDependecies.peerDependencies;
     }
     if (resolvedDependecies.optionalDependencies) {
-      this._packageJsonFile.optionalDependencies = resolvedDependecies.optionalDependencies;
+      this._packageFileContent.optionalDependencies = resolvedDependecies.optionalDependencies;
     }
+
+    this._textDoc.save();
   }
 }

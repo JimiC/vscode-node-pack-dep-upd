@@ -2,6 +2,7 @@ import path from 'path';
 import vscode from 'vscode';
 import { constants } from './constants';
 import { DependenciesFlags } from './enumerations';
+import { PackageFileManager } from './packageFileManager';
 import * as utils from './utils/helper';
 
 export class CommandManager {
