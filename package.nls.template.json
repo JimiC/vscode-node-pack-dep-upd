@@ -6,6 +6,6 @@
   "command.updateOptDepOnly.title": "",
   "configuration.title": "",
   "configuration.npmdepupd.registry.description": "",
-  "configuration.npmdepupd.resolver.description": "",
+  "configuration.npmdepupd.policy.description": "",
   "configuration.npmdepupd.keepRange.description": ""
 }

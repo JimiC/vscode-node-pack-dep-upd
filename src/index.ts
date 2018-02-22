@@ -1,8 +1,8 @@
-import vscode from 'vscode';
+import { ExtensionContext } from 'vscode';
 import { CommandManager } from './commandManager';
 import { constants } from './constants';
 
-export const activate = (context: vscode.ExtensionContext): void => {
+export const activate = (context: ExtensionContext): void => {
   CommandManager.registerCommands(context);
 
   // tslint:disable-next-line no-console

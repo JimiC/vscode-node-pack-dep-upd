@@ -80,10 +80,10 @@
                     "default": "https://registry.npmjs.org",
                     "description": "%configuration.npmdepupd.registry.description%"
                 },
-                "npmdepupd.resolver": {
+                "npmdepupd.policy": {
                     "type": "string",
                     "default": "semver",
-                    "description": "%configuration.npmdepupd.resolver.description%",
+                    "description": "%configuration.npmdepupd.policy.description%",
                     "enum": [
                         "semver",
                         "latest"
