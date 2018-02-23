@@ -1,7 +1,7 @@
 // tslint:disable only-arrow-functions
 // tslint:disable no-unused-expression
 import { expect } from 'chai';
-import * as utils from '../../src/utils';
+import * as utils from '../../src/lib/utils';
 
 describe('Utils: tests', function () {
 
