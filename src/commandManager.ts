@@ -1,11 +1,11 @@
 import path from 'path';
 import vscode from 'vscode';
 import { constants } from './constants';
-import { DependenciesFlags } from './enumerations';
-import { IPackageDependencies, IResolverOptions } from './interfaces';
-import { PackageFileManager } from './packageFileManager';
-import * as utils from './utils/helper';
-import { VersionResolver } from './versionResolver';
+import { DependenciesFlags } from './lib/enumerations';
+import { IPackageDependencies, IResolverOptions } from './lib/interfaces';
+import { PackageFileManager } from './lib/packageFileManager';
+import * as utils from './lib/utils/helper';
+import { VersionResolver } from './lib/versionResolver';
 
 export class CommandManager {
 
