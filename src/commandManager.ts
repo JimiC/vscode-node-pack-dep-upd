@@ -26,9 +26,11 @@ export class CommandManager {
   }
 
   private static async _updateCommand(flag?: DependenciesFlags): Promise<void> {
+    const sbi = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
     try {
+      sbi.show();
+      sbi.text = '$(broadcast)  Updating dependencies...';
       if (this._handleCommandError()) { return; }
-      const status: vscode.Disposable = vscode.window.setStatusBarMessage('Updating dependencies...');
       const document: string = vscode.window.activeTextEditor.document.getText();
       const packageFileManager = new PackageFileManager(document);
       const dependencies: IPackageDependencies = packageFileManager.getDependencies(flag);
@@ -41,11 +43,16 @@ export class CommandManager {
       const versionResolver = new VersionResolver(options);
       const resolvedDependencies: IPackageDependencies = await versionResolver.resolve(dependencies);
       await packageFileManager.persist(resolvedDependencies);
-      status.dispose();
-      vscode.window.setStatusBarMessage('Dependencies updated', 3000);
+      // TODO: Select best color for all themes
+      sbi.color = '#4bff4b';
+      sbi.text = '$(check)  Dependencies updated';
     } catch (error) {
       console.error(error.stack || error.message || error);
-      vscode.window.setStatusBarMessage('NDU failed to update the dependencies', 5000);
+      // TODO: Select best color for all themes
+      sbi.color = '#ff4b4b';
+      sbi.text = '$(alert)  NDU failed to update the dependencies';
+    } finally {
+      setTimeout(() => sbi.dispose(), 3000);
     }
   }
 
