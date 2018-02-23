@@ -91,7 +91,7 @@
                 },
                 "npmdepupd.keepRange": {
                     "type": "boolean",
-                    "default": "true",
+                    "default": true,
                     "description": "%configuration.npmdepupd.keepRange.description%"
                 }
             }

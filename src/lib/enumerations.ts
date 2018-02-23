@@ -5,3 +5,8 @@ export enum DependenciesFlags {
   Optional = 4,
   All = 7,
 }
+
+export enum Policy {
+  latest,
+  semver,
+}
