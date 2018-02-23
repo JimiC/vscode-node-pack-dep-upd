@@ -1,16 +1,16 @@
-import { Uri, WorkspaceConfiguration } from 'vscode';
-import { IDependencies, IPackageDependencies } from './models';
+import url from 'url';
+import { IDependencies, IPackageDependencies, IResolverOptions } from './interfaces';
 
 export class VersionResolver {
 
-  private readonly _registry: Uri;
+  private readonly _registry: url.Url;
   private readonly _policy: string;
   private readonly _keepRange: boolean;
 
-  constructor(config: WorkspaceConfiguration) {
-    this._registry = Uri.parse(config.get<string>('registry'));
-    this._policy = config.get<string>('policy');
-    this._keepRange = config.get<boolean>('keepRange');
+  constructor(private _options: IResolverOptions) {
+    this._registry = url.parse(this._options.registry);
+    this._policy = this._options.policy;
+    this._keepRange = this._options.keepRange;
   }
 
   public async resolve(dependencies: IPackageDependencies): Promise<IPackageDependencies> {

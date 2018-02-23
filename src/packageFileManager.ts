@@ -1,14 +1,13 @@
-import vscode from 'vscode';
 import { DependenciesFlags } from './enumerations';
-import { IDependencies, IPackageDependencies } from './models';
+import { IDependencies, IPackageDependencies } from './interfaces';
 
 export class PackageFileManager {
 
   private _packageFileContent: any;
 
-  constructor(private _textDoc: vscode.TextDocument) {
-    this._packageFileContent = this._textDoc
-      ? JSON.parse(this._textDoc.getText())
+  constructor(private _document: string) {
+    this._packageFileContent = typeof this._document === 'string'
+      ? JSON.parse(this._document)
       : {};
   }
 
@@ -54,7 +53,7 @@ export class PackageFileManager {
     }
   }
 
-  public persist(resolvedDependecies: IPackageDependencies): Thenable<boolean> {
+  public persist(resolvedDependecies: IPackageDependencies): PromiseLike<boolean> {
     if (!Object.keys(resolvedDependecies).length) {
       return;
     }
@@ -70,8 +69,6 @@ export class PackageFileManager {
     if (resolvedDependecies.optionalDependencies) {
       this._packageFileContent.optionalDependencies = resolvedDependecies.optionalDependencies;
     }
-    if (this._textDoc.isDirty) {
-      return this._textDoc.save();
-    }
+    // TODO: write changes to file
   }
 }

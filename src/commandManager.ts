@@ -2,6 +2,7 @@ import path from 'path';
 import vscode from 'vscode';
 import { constants } from './constants';
 import { DependenciesFlags } from './enumerations';
+import { IPackageDependencies, IResolverOptions } from './interfaces';
 import { PackageFileManager } from './packageFileManager';
 import * as utils from './utils/helper';
 import { VersionResolver } from './versionResolver';
@@ -27,12 +28,18 @@ export class CommandManager {
   private static async _updateCommand(flag?: DependenciesFlags): Promise<void> {
     try {
       if (this._handleCommandError()) { return; }
-      const status = vscode.window.setStatusBarMessage('Updating dependencies...');
-      const packageFileManager = new PackageFileManager(vscode.window.activeTextEditor.document);
-      const dependencies = packageFileManager.getDependencies(flag);
-      const config = vscode.workspace.getConfiguration(constants.extensionShortName);
-      const versionResolver = new VersionResolver(config);
-      const resolvedDependencies = await versionResolver.resolve(dependencies);
+      const status: vscode.Disposable = vscode.window.setStatusBarMessage('Updating dependencies...');
+      const document: string = vscode.window.activeTextEditor.document.getText();
+      const packageFileManager = new PackageFileManager(document);
+      const dependencies: IPackageDependencies = packageFileManager.getDependencies(flag);
+      const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration(constants.extensionShortName);
+      const options: IResolverOptions = {
+        keepRange: config.get<boolean>('keepRange'),
+        policy: config.get<string>('policy'),
+        registry: config.get<string>('registry'),
+      };
+      const versionResolver = new VersionResolver(options);
+      const resolvedDependencies: IPackageDependencies = await versionResolver.resolve(dependencies);
       await packageFileManager.persist(resolvedDependencies);
       status.dispose();
       vscode.window.setStatusBarMessage('Dependencies updated', 3000);
