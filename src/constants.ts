@@ -1,4 +1,4 @@
 export const constants = {
-  extensionDisplayName: 'NPM Dependencies Updater',
-  extensionShortName: 'npmdepupd',
+  extensionDisplayName: 'Node Package Dependencies Updater',
+  extensionShortName: 'npdu',
 };

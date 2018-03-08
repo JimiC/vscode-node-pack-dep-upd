@@ -1,11 +1,11 @@
 {
-  "command.updateAll.title": "NDU: Update All",
-  "command.updateDepOnly.title": "NDU: Update Dependencies Only",
-  "command.updateDevDepOnly.title": "NDU: Update DevDependencies Only",
-  "command.updatePeerDepOnly.title": "NDU: Update PeerDependencies Only",
-  "command.updateOptDepOnly.title": "NDU: Update OptionalDependencies Only",
-  "configuration.title": "NPM Dependencies Updater",
-  "configuration.npmdepupd.registry.description": "The URL of the NPM registry to use.",
-  "configuration.npmdepupd.policy.description": "The policy on how the dependency version gets resolved.",
-  "configuration.npmdepupd.keepRange.description": "Controls whether the range comparators are kept."
+  "command.updateAll.title": "NPDU: Update All",
+  "command.updateDepOnly.title": "NPDU: Update Dependencies Only",
+  "command.updateDevDepOnly.title": "NPDU: Update DevDependencies Only",
+  "command.updatePeerDepOnly.title": "NPDU: Update PeerDependencies Only",
+  "command.updateOptDepOnly.title": "NPDU: Update OptionalDependencies Only",
+  "configuration.title": "Node Package Dependencies Updater",
+  "configuration.npdu.registry.description": "The URL of the NPM registry to use.",
+  "configuration.npdu.policy.description": "The policy on how the dependency version gets resolved.",
+  "configuration.npdu.keepRange.description": "Controls whether the range comparators are kept."
 }

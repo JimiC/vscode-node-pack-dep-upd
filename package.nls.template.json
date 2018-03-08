@@ -5,7 +5,7 @@
   "command.updatePeerDepOnly.title": "",
   "command.updateOptDepOnly.title": "",
   "configuration.title": "",
-  "configuration.npmdepupd.registry.description": "",
-  "configuration.npmdepupd.policy.description": "",
-  "configuration.npmdepupd.keepRange.description": ""
+  "configuration.npdu.registry.description": "",
+  "configuration.npdu.policy.description": "",
+  "configuration.npdu.keepRange.description": ""
 }

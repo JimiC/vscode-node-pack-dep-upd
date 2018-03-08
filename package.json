@@ -1,8 +1,8 @@
 {
-    "name": "vscode-npm-dep-updater",
+    "name": "vscode-node-pack-dep-upd",
     "version": "0.0.0",
-    "displayName": "NPM Dependencies Updater",
-    "description": "Update your Node.js project dependencies (SemVer compliant)",
+    "displayName": "Node Package Dependencies Updater",
+    "description": "Update your Node.js package dependencies (SemVer compliant)",
     "publisher": "jimic",
     "license": "MIT",
     "author": {
@@ -11,10 +11,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/JimiC/vscode-npm-dep-updater"
+        "url": "https://github.com/JimiC/vscode-node-pack-dep-upd"
     },
     "bugs": {
-        "url": "https://github.com/JimiC/vscode-npm-dep-updater/issues",
+        "url": "https://github.com/JimiC/vscode-node-pack-dep-upd/issues",
         "email": "jimikar@gmail.com"
     },
     "engines": {
@@ -25,74 +25,78 @@
         "Other"
     ],
     "keywords": [
+        "dep",
         "dependency",
         "dependencies",
+        "node",
+        "nodejs",
+        "node.js",
         "npm",
         "packages",
         "package.json",
         "semver",
         "update",
         "updater",
-        "vscode-npm-dep-updater"
+        "vscode-node-dep-updater"
     ],
     "preview": true,
-    "homepage": "https://github.com/JimiC/vscode-npm-dep-updater/blob/master/README.md",
+    "homepage": "https://github.com/JimiC/vscode-node-pack-dep-upd/blob/master/README.md",
     "icon": "images/logo.png",
     "galleryBanner": {
         "color": "#e2e2e2"
     },
     "activationEvents": [
         "workspaceContains:**/package.json",
-        "onCommand:npmdepupd.updateAll",
-        "onCommand:npmdepupd.updateDepOnly",
-        "onCommand:npmdepupd.updateDevDepOnly",
-        "onCommand:npmdepupd.updatePeerDepOnly",
-        "onCommand:npmdepupd.updateOptDepOnly"
+        "onCommand:npdu.updateAll",
+        "onCommand:npdu.updateDepOnly",
+        "onCommand:npdu.updateDevDepOnly",
+        "onCommand:npdu.updatePeerDepOnly",
+        "onCommand:npdu.updateOptDepOnly"
     ],
     "contributes": {
         "commands": [
             {
-                "command": "npmdepupd.updateAll",
+                "command": "npdu.updateAll",
                 "title": "%command.updateAll.title%"
             },
             {
-                "command": "npmdepupd.updateDepOnly",
+                "command": "npdu.updateDepOnly",
                 "title": "%command.updateDepOnly.title%"
             },
             {
-                "command": "npmdepupd.updateDevDepOnly",
+                "command": "npdu.updateDevDepOnly",
                 "title": "%command.updateDevDepOnly.title%"
             },
             {
-                "command": "npmdepupd.updatePeerDepOnly",
+                "command": "npdu.updatePeerDepOnly",
                 "title": "%command.updatePeerDepOnly.title%"
             },
             {
-                "command": "npmdepupd.updateOptDepOnly",
+                "command": "npdu.updateOptDepOnly",
                 "title": "%command.updateOptDepOnly.title%"
             }
         ],
         "configuration": {
             "title": "%configuration.title%",
             "properties": {
-                "npmdepupd.registry": {
+                "npdu.registry": {
                     "type": "string",
                     "default": "https://registry.npmjs.org",
-                    "description": "%configuration.npmdepupd.registry.description%"
+                    "description": "%configuration.npdu.registry.description%"
                 },
-                "npmdepupd.policy": {
+                "npdu.policy": {
                     "type": "string",
                     "default": "semver",
-                    "description": "%configuration.npmdepupd.policy.description%",
+                    "description": "%configuration.npdu.policy.description%",
                     "enum": [
                         "semver",
                         "latest"
                     ]
                 },
-                "npmdepupd.keepRange": {
+                "npdu.keepRange": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%configuration.npmdepupd.keepRange.description%"
+                    "description": "%configuration.npdu.keepRange.description%"
                 }
             }
         },
@@ -100,28 +104,28 @@
             "editor/context": [
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmdepupd.updateAll",
-                    "group": "npmdepupd"
+                    "command": "npdu.updateAll",
+                    "group": "npdu"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmdepupd.updateDepOnly",
-                    "group": "npmdepupd@2"
+                    "command": "npdu.updateDepOnly",
+                    "group": "npdu@2"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmdepupd.updateDevDepOnly",
-                    "group": "npmdepupd@3"
+                    "command": "npdu.updateDevDepOnly",
+                    "group": "npdu@3"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmdepupd.updatePeerDepOnly",
-                    "group": "npmdepupd@4"
+                    "command": "npdu.updatePeerDepOnly",
+                    "group": "npdu@4"
                 },
                 {
                     "when": "resourceFilename == package.json",
-                    "command": "npmdepupd.updateOptDepOnly",
-                    "group": "npmdepupd@5"
+                    "command": "npdu.updateOptDepOnly",
+                    "group": "npdu@5"
                 }
             ]
         }
@@ -129,13 +133,14 @@
     "main": "./out/src",
     "scripts": {
         "build": "npm run lint && npm run test",
+        "precompile": "rimraf ./out",
         "compile": "tsc",
         "compile:w": "npm run compile -- -w",
         "lint": "tslint -p .",
-        "postinstall": "vscode-install",
-        "precompile": "rimraf ./out",
         "pretest": "rimraf ./.nyc_output ./coverage && npm run compile",
         "test": "nyc -c -x '' mocha ./out/test --recursive",
+        "posttest": "nyc report -r lcov",
+        "postinstall": "vscode-install",
         "vscode:prepublish": "npm run build"
     },
     "dependencies": {
